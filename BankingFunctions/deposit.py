@@ -12,35 +12,49 @@ def handle_deposit():
     """
     print("Which account would you like to make a deposit?")
     # TODO: Prompt the user to select an account and make a deposit.
+    print("1. Checking")
+    print("2. Savings")
+    print("3. Quit")
+    choice = input("Enter your choice: ")
+
     # TODO: If the user chooses to quit, return from the function.
-    if:
+    if choice == '3':
         return
 
     try:
         # TODO: If the selection is in a list of valid choices, i.e ['1', '2']
-        if:
+        if choice in ['1', '2']:
             try:
                 # TODO: Prompt the user to enter the amount to deposit and convert it to a float.
+                amount = float(input("Enter the amount to deposit: "))
 
             # Use the ValueError as an exception.
             except ValueError:
                 # TODO: Print an error message if the user enters an invalid amount.
+                print("Invalid amount. Please enter a valid amount.")
 
                 # TODO: Call the handle_deposit function recursively for an invalid amount.
+                handle_deposit()
 
                 # TODO: Ensure the function returns after the recursive call.
+                return
 
             # TODO: Add an if/else conditional statement to check the account choice,
-            if:
-                # TODO: Call the withdraw method on the appropriate account.
+            # TODO: Add an if/else conditional statement to check the account choice,
+            if choice == '1':
+                # TODO: Call the deposit method on the appropriate account.
                 # TODO: Add a print statement to display the updated balance after the deposit
                 # TODO: Format the balance to two decimal places and thousands.
+                checking.deposit(amount)
+                print(f"Updated Checking Balance: ${checking.balance:,.2f}")
+            elif choice == '2':
+                savings.deposit(amount)
+                print(f"Updated Savings Balance: ${savings.balance:,.2f}")
+
             else:
-                # TODO: Call the deposit methods on the appropriate account.
-                # TODO: Add a print statement to display the updated balance after the deposit
-                # TODO: Format the balance to two decimal places and thousands.
-        else:
-            # TODO: Raise a ValueError with a message stating the user entered an invalid choice.
+                # TODO: Raise a ValueError with a message stating the user entered an invalid choice.
+                raise ValueError("Invalid choice. Please enter a valid choice.")
+
     # If the user enters an invalid choice,
     # Print the ValueError message and call the handle_deposit function recursively.
     except ValueError as e:
